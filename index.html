@@ -49,7 +49,7 @@ body::before{
     radial-gradient(1.1px 1.1px at 85% 60%, rgba(255,255,255,.12) 50%, transparent 51%),
     radial-gradient(1.2px 1.2px at 12% 84%, rgba(255,255,255,.10) 50%, transparent 51%);
 }
-.wrap{position:relative; z-index:1; max-width:1080px; margin:0 auto; padding:0 20px calc(80px + env(safe-area-inset-bottom))}
+.wrap{position:relative; z-index:1; max-width:1080px; margin:0 auto; padding:22px 20px calc(80px + env(safe-area-inset-bottom))}
 
 /* ---------- top bar ---------- */
 header{position:sticky; top:0; z-index:30; backdrop-filter:blur(10px); padding-top:env(safe-area-inset-top);
@@ -153,6 +153,28 @@ h2.display{font-family:var(--serif); font-weight:700; font-size:clamp(1.5rem,3.4
 .face .num{font-family:var(--serif); font-size:4.5rem; color:var(--gold2); line-height:1}
 .face .nm{font-family:var(--serif); font-size:1.5rem; color:var(--cream); margin-top:6px}
 .face .hint{font-size:.8rem; color:rgba(247,243,232,.55); margin-top:14px}
+.ord-term{font-family:var(--sans); font-size:.95rem; letter-spacing:.03em; color:rgba(247,243,232,.6); margin-top:6px}
+.hintbtn{background:none; border:1px solid var(--hair-soft); color:var(--gold2); font-family:var(--sans); font-size:.8rem; padding:8px 15px; border-radius:9px; cursor:pointer; margin-top:14px; min-height:40px}
+.hintbtn:hover{border-color:var(--gold)}
+.hinttxt{margin:12px auto 0; max-width:46ch; font-size:.86rem; line-height:1.45; color:rgba(247,243,232,.74); background:rgba(255,255,255,.05); border-left:2px solid var(--gold); padding:10px 13px; border-radius:8px; text-align:left}
+.namelink{color:var(--gold2); cursor:pointer; text-decoration:underline; text-underline-offset:2px; text-decoration-color:rgba(212,175,55,.5)}
+.namelink:hover{text-decoration-color:var(--gold2)}
+.ov{position:fixed; inset:0; z-index:50; background:rgba(6,10,24,.66); backdrop-filter:blur(4px); display:flex; align-items:center; justify-content:center; padding:18px; opacity:0; pointer-events:none; transition:opacity .18s}
+.ov.show{opacity:1; pointer-events:auto}
+.ovcard{background:var(--navy2); border:1px solid var(--hair); border-radius:18px; max-width:440px; width:100%; max-height:88vh; overflow:auto; padding:22px; box-shadow:0 30px 80px -20px rgba(0,0,0,.7); position:relative; text-align:left}
+.ovx{position:absolute; top:10px; right:13px; background:none; border:0; color:var(--cream); font-size:1.7rem; line-height:1; cursor:pointer; opacity:.6; min-height:40px; min-width:40px}
+.ovx:hover{opacity:1}
+.ovhead{display:flex; gap:14px; align-items:center; margin-bottom:14px; padding-right:24px}
+.ovhead img{width:74px; height:74px; border-radius:11px; object-fit:cover; border:2px solid var(--gold); flex:none}
+.ovord{color:var(--gold2); font-family:var(--serif); font-size:1.05rem}
+.ovhead h3{font-family:var(--serif); color:var(--cream); margin:2px 0; font-size:1.3rem}
+.ovmeta{font-size:.82rem; color:rgba(247,243,232,.6)}
+.ovfacts{display:grid; grid-template-columns:auto 1fr; gap:4px 12px; margin:0 0 14px; font-size:.84rem}
+.ovfacts dt{color:rgba(247,243,232,.5)}
+.ovfacts dd{margin:0; color:var(--cream)}
+.ovsum{font-size:.88rem; color:rgba(247,243,232,.8); line-height:1.5; margin:0}
+.ovevents{margin:10px 0 16px; padding-left:18px; font-size:.83rem; color:rgba(247,243,232,.7)}
+.ovevents li{margin:4px 0}
 .face.back img{width:96px; height:96px; border-radius:10px; object-fit:cover; border:2px solid var(--gold); margin-bottom:10px}
 .kv{font-size:.84rem; color:rgba(247,243,232,.8); text-align:left; width:100%; margin:2px 0}
 .kv b{color:var(--gold2); font-weight:600}
@@ -224,14 +246,13 @@ footer{text-align:center; padding:30px 0 0; color:rgba(247,243,232,.4); font-siz
 footer .crestmini{width:20px;height:20px;vertical-align:-5px;margin-right:6px;opacity:.7}
 
 /* ---------- timeline hero ---------- */
-.timeline{display:flex; align-items:stretch; gap:2px; overflow-x:auto; padding:20px 2px 6px; scrollbar-width:thin; -webkit-overflow-scrolling:touch; overscroll-behavior-x:contain; scroll-snap-type:x proximity}
-.timeline::-webkit-scrollbar{height:7px}
-.timeline::-webkit-scrollbar-thumb{background:var(--hair); border-radius:9px}
-.tlseg{flex:0 0 auto; border:0; border-radius:6px 6px 0 0; cursor:pointer; position:relative; height:76px;
+.timeline{display:flex; align-items:stretch; gap:2px; overflow:hidden; padding:18px 0 6px}
+.tlseg{flex:1 1 0; min-width:0; overflow:hidden; border:0; border-radius:6px 6px 0 0; cursor:pointer; position:relative; height:80px;
   display:flex; align-items:flex-end; justify-content:center; padding-bottom:5px; color:#fff;
   font-family:var(--serif); font-size:.78rem; transition:.15s; box-shadow:inset 0 -2px 0 rgba(0,0,0,.2)}
 .tlseg:hover,.tlseg:focus-visible{transform:translateY(-3px); filter:brightness(1.18); outline:none}
 .tlseg .tlnum{text-shadow:0 1px 2px rgba(0,0,0,.65)}
+.tlseg.mini .tlnum{display:none}
 .tlseg.nc::after{content:"\21A9"; position:absolute; top:-15px; left:50%; transform:translateX(-50%); color:var(--gold2); font-size:.74rem}
 .tlhint{font-size:.74rem; color:rgba(247,243,232,.5); margin-top:10px}
 .tllegend{display:flex; gap:8px 15px; flex-wrap:wrap; margin-top:12px; font-size:.72rem; color:rgba(247,243,232,.72)}
@@ -251,6 +272,7 @@ footer .crestmini{width:20px;height:20px;vertical-align:-5px;margin-right:6px;op
 .learnrow .info{flex:1; min-width:0}
 .learnrow .info .nm{font-family:var(--serif); color:var(--cream); font-size:1.05rem}
 .learnrow .info .pg{font-size:.8rem; color:rgba(247,243,232,.62); margin-top:2px}
+.learnrow .info .whyline{font-size:.8rem; line-height:1.4; color:var(--gold2); margin-top:5px; border-left:2px solid var(--gold); padding-left:9px}
 /* ---------- drills ---------- */
 .themecard{cursor:pointer; background:var(--glass); border:1px solid var(--hair-soft); border-radius:14px; padding:18px; transition:.16s; text-align:left; color:var(--cream); font-family:var(--sans)}
 .themecard:hover{transform:translateY(-3px); border-color:var(--hair); background:var(--glass-strong)}
@@ -293,7 +315,7 @@ footer .crestmini{width:20px;height:20px;vertical-align:-5px;margin-right:6px;op
   .detail .frame img{width:140px; height:170px}
   .detail .meta{min-width:0; flex-basis:100%}
   /* timeline: tappable segment floor + snap to each */
-  .tlseg{min-width:30px; height:84px; scroll-snap-align:center; font-size:.82rem}
+  .tlseg{height:80px; font-size:.82rem}
   /* sequence reorder arrows: from 30x22 to real tap targets */
   .seqrow{padding:10px}
   .seqrow .mv{gap:4px}
@@ -392,9 +414,9 @@ const LEGEND=["Federalist","Democratic-Republican","Democratic","Whig","Republic
 const THEMES=[
   {id:"rushmore",name:"The Rushmore Four",blurb:"Carved into Mount Rushmore as defining figures of the nation's first 150 years.",nums:[1,3,16,26]},
   {id:"founding",name:"The Founding Era",blurb:"The first six presidents — Revolutionary-generation leaders who built the office from scratch.",nums:[1,2,3,4,5,6]},
-  {id:"died",name:"Died in Office",blurb:"Eight presidents died while serving — four from illness or age, four by assassination.",nums:[9,12,16,20,25,29,32,35]},
-  {id:"assassinated",name:"Assassinated",blurb:"Four sitting presidents were killed by an assassin's bullet.",nums:[16,20,25,35]},
-  {id:"impeached",name:"Impeached",blurb:"Three presidents were impeached by the House and acquitted by the Senate — Trump twice.",nums:[17,42,45]},
+  {id:"died",name:"Died in Office",blurb:"Eight presidents died while serving — four from illness or age, four by assassination.",nums:[9,12,16,20,25,29,32,35],why:{9:"Died of illness just 31 days in — the shortest presidency in history.",12:"Died in July 1850 after a sudden illness, about 16 months into his term.",16:"Assassinated by John Wilkes Booth in April 1865, days after the Civil War's end.",20:"Shot in July 1881, died that September of the wounds and infection.",25:"Assassinated by an anarchist in 1901, early in his second term.",29:"Died suddenly in August 1923, likely a heart attack, while traveling out west.",32:"Died of a cerebral hemorrhage in April 1945, months into a fourth term.",35:"Assassinated in Dallas in November 1963."}},
+  {id:"assassinated",name:"Assassinated",blurb:"Four sitting presidents were killed by an assassin's bullet.",nums:[16,20,25,35],why:{16:"Shot by John Wilkes Booth at Ford's Theatre, April 1865 — the first president assassinated.",20:"Shot by Charles Guiteau, a disappointed office-seeker, in July 1881; died that September.",25:"Shot by anarchist Leon Czolgosz at the 1901 Pan-American Exposition in Buffalo.",35:"Shot in Dallas on Nov. 22, 1963; Lee Harvey Oswald was charged but killed before trial."}},
+  {id:"impeached",name:"Impeached",blurb:"Three presidents were impeached by the House and acquitted by the Senate — Trump twice.",nums:[17,42,45],why:{17:"Impeached 1868 for firing his war secretary in defiance of the Tenure of Office Act; acquitted by a single Senate vote.",42:"Impeached 1998 on perjury and obstruction-of-justice charges from the Lewinsky affair; acquitted in 1999.",45:"The only president impeached twice — 2019 (abuse of power over the Ukraine call) and 2021 (inciting the Jan. 6 Capitol attack); acquitted both times."}},
   {id:"nonconsec",name:"Non-Consecutive",blurb:"The only two presidents to serve split terms, each counted twice in the numbering.",nums:[22,24,45,47]}
 ];
 const slotsFor=nums=>nums.map(n=>SLOTS.find(s=>s.num===n)).filter(Boolean);
@@ -407,6 +429,11 @@ function slotYears(slot){
   if(!m)return 4; const a=+m[1], b=m[2]==="present"?2026:+m[2]; return Math.max(.4,b-a);
 }
 const CHUNK=5, NCHUNKS=Math.ceil(47/CHUNK);
+function slotTerm(slot){ // term years for this specific slot (handles two-term Cleveland/Trump)
+  const segs=slot.p.term.split("&").map(s=>s.trim());
+  if(slot.p.n.length>1){const i=slot.p.n.indexOf(slot.num); return segs[i]||segs[0];}
+  return slot.p.term;
+}
 const chunkNums=ci=>{const o=[];for(let n=ci*CHUNK+1;n<=Math.min(47,ci*CHUNK+CHUNK);n++)o.push(n);return o;};
 
 /* ============ persistent state (time-based Leitner) ============ */
@@ -489,27 +516,31 @@ function Home(){
     </div>
     <hr class="hr">
     <div class="center">
-      <button class="btn ghost" onclick="resetAll()">Reset all progress</button>
-      <p class="note">On-device only. Learned ${learned}/${NCHUNKS} chunks · ${ST.correct} correct · ${ST.wrong} missed · ${ST.sessions} sessions.</p>
+      <div class="btn-row" style="justify-content:center">
+        <button class="btn ghost" onclick="exportProgress()">Export progress</button>
+        <button class="btn ghost" onclick="importProgress()">Import progress</button>
+        <button class="btn ghost" onclick="resetAll()">Reset</button>
+      </div>
+      <p class="note">Progress saves on this device only — export to move it to another browser or phone. Learned ${learned}/${NCHUNKS} chunks · ${ST.correct} correct · ${ST.wrong} missed · ${ST.sessions} sessions.</p>
     </div>
   </div>`;
   buildTimeline();
 }
 function buildTimeline(){
   const tl=document.getElementById("tl"); if(!tl)return;
-  const maxY=Math.max(...SLOTS.map(slotYears));
   tl.innerHTML="";
   SLOTS.forEach(s=>{
     const b=document.createElement("button");
     b.className="tlseg"+(NONCONSEC.has(s.num)?" nc":"");
-    const w=Math.round(16+ slotYears(s)/maxY*54); // 16–70px by term length
-    b.style.width=w+"px"; b.style.background=pcolor(s.p);
+    b.style.flex=slotYears(s)+" 1 0"; b.style.background=pcolor(s.p);
     b.title=`#${s.num} ${s.p.name} · ${s.p.party} · ${s.p.term}`;
     b.setAttribute("aria-label",b.title);
     b.innerHTML=`<span class="tlnum">${s.num}</span>`;
     b.onclick=()=>detail(s.num);
     tl.appendChild(b);
   });
+  const raf=(typeof requestAnimationFrame==="function")?requestAnimationFrame:(cb)=>setTimeout(cb,0);
+  raf(()=>{[...tl.children].forEach(b=>{ if(b.offsetWidth&&b.offsetWidth<17) b.classList.add("mini"); });});
   const leg=document.getElementById("tlleg");
   leg.innerHTML=LEGEND.map(p=>`<span><i style="background:${PARTY_COLOR[p]}"></i>${p}</span>`).join("");
 }
@@ -557,7 +588,7 @@ function nextQuiz(){
   const slot=quiz.queue.shift(); quiz.cur=slot;
   const c=ST.cfg; const p=slot.p;
   let prompt,portrait="";
-  if(c.dir==="n2p"){prompt=`<div class="ord-big">#${slot.num}</div><p class="sub center">Who was the ${ordinal(slot.num)} president?</p>`;}
+  if(c.dir==="n2p"){prompt=`<div class="ord-big">#${slot.num}</div><div class="ord-term">${slotTerm(slot)}</div><p class="sub center">Who was the ${ordinal(slot.num)} president?</p><button class="hintbtn" id="qHintBtn" onclick="revealHint('qHintTxt',this)">Need a hint?</button><div class="hinttxt" id="qHintTxt" hidden>${p.hook}</div>`;}
   else {portrait=`<img class="q-portrait" src="${p.img}" alt="">`;
     const ask=c.dir==="p2n"?`What number president was`:`What party was`;
     prompt=`${portrait}<div class="q-prompt">${p.name}</div><p class="sub center">${ask} ${c.dir==='p2n'?'this?':'he?'}</p>`;}
@@ -618,9 +649,10 @@ function resolve(ok,slot){
   else{streak=0;quiz.queue.splice(Math.min(3,quiz.queue.length),0,slot);} // adaptive: resurface soon
   grade(slot.num,ok); // central SRS update + lifetime tally
   const nums=p.n.map(n=>"#"+n).join(" & ");
+  const nL=`<a class="namelink" onclick="showInfo(${slot.num})">${p.name}</a>`;
   document.getElementById("qFb").innerHTML= ok
-    ? `<span class="ok">Correct.</span> ${p.name} — ${nums}, ${p.party}, ${p.term}.`
-    : `<span class="no">Not quite.</span> ${p.name} was ${nums} (${p.party}, ${p.term}).`;
+    ? `<span class="ok">Correct.</span> ${nL} — ${nums}, ${p.party}, ${p.term}.`
+    : `<span class="no">Not quite.</span> ${nL} was ${nums} (${p.party}, ${p.term}).`;
   quiz.done++;
   const nx=document.getElementById("qNext");
   const b=document.createElement("button");b.className="btn gold";
@@ -916,6 +948,59 @@ function cbar(label,val,pct,cls){return `<div class="cbar ${cls}">
   <div class="lab"><span>${label}</span><span>${val}</span></div>
   <div class="track"><div class="fill" style="width:${Math.max(4,pct)}%"></div></div></div>`;}
 
+function revealHint(id,btn){const el=document.getElementById(id);if(el)el.hidden=false;if(btn)btn.style.display="none";}
+
+function showInfo(num){
+  const p=byNum(num);
+  let ov=document.getElementById("infoOv");
+  if(!ov){ov=document.createElement("div");ov.id="infoOv";ov.className="ov";document.body.appendChild(ov);
+    ov.addEventListener("click",e=>{if(e.target===ov)closeInfo();});}
+  const nums=p.n.map(n=>"#"+n).join(" & ");
+  ov.innerHTML=`<div class="ovcard">
+    <button class="ovx" onclick="closeInfo()" aria-label="Close">&times;</button>
+    <div class="ovhead"><img src="${p.img}" alt="">
+      <div><div class="ovord">${nums}</div><h3>${p.name}</h3>
+      <div class="ovmeta">${p.party} &middot; ${p.term}</div></div></div>
+    <dl class="ovfacts">
+      <dt>Vice President</dt><dd>${p.vp}</dd>
+      <dt>Home state</dt><dd>${p.state}</dd>
+      <dt>Lived</dt><dd>${p.born}${p.died?"–"+p.died:" – present"}</dd>
+      <dt>Preceded by</dt><dd>${p.prev}</dd>
+      <dt>Succeeded by</dt><dd>${p.next}</dd>
+    </dl>
+    <p class="ovsum">${p.summary}</p>
+    <ul class="ovevents">${p.events.map(e=>`<li>${e}</li>`).join("")}</ul>
+    <button class="btn ghost" style="width:100%" onclick="closeInfo();detail(${p.n[0]})">Open full record &rarr;</button>
+  </div>`;
+  ov.classList.add("show"); document.body.style.overflow="hidden";
+}
+function closeInfo(){const ov=document.getElementById("infoOv");if(ov){ov.classList.remove("show");document.body.style.overflow="";}}
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeInfo();});
+
+function exportProgress(){
+  try{
+    const blob=new Blob([JSON.stringify(ST)],{type:"application/json"});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement("a");
+    a.href=url; a.download=`potus-progress-${new Date().toISOString().slice(0,10)}.json`;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),1500);
+  }catch(e){alert("Could not export progress.");}
+}
+function importProgress(){
+  const inp=document.createElement("input"); inp.type="file"; inp.accept="application/json,.json";
+  inp.onchange=()=>{const f=inp.files&&inp.files[0]; if(!f)return;
+    const r=new FileReader();
+    r.onload=()=>{try{
+      const s=JSON.parse(r.result);
+      if(!s||typeof s!=="object"||!("srs"in s)){alert("That file isn't a POTUS Studio progress export.");return;}
+      if(!confirm("Replace your progress on this device with the imported file?"))return;
+      ST=Object.assign(defState(),migrate(s)); save(); streak=0; go("home");
+    }catch(e){alert("Could not read that file — it may be corrupted.");}};
+    r.readAsText(f);};
+  inp.click();
+}
+
 /* ============ PRACTICE hub ============ */
 function Practice(){
   app.innerHTML=`<div class="panel">
@@ -965,7 +1050,7 @@ function learnChunk(ci){
     <h2 class="display">Presidents #${nums[0]}&ndash;#${nums[nums.length-1]}</h2>
     <div>${nums.map(n=>{const p=byNum(n);return `<div class="learnrow">
       <div class="o">${n}</div><img src="${p.img}" alt="">
-      <div class="info"><div class="nm">${p.name}</div>
+      <div class="info"><div class="nm"><a class="namelink" onclick="showInfo(${n})">${p.name}</a></div>
       <div class="pg">${p.party} &middot; ${p.term}</div>
       <div class="pg" style="color:var(--gold2)">${p.mnem}</div></div></div>`;}).join("")}</div>
     <div class="btn-row">
@@ -985,8 +1070,11 @@ function learnQ(){
   app.innerHTML=`<div class="panel q-card">
     <p class="eyebrow">Check &middot; ${learn.done+1}/${learn.total}</p>
     <div class="ord-big">#${slot.num}</div>
+    <div class="ord-term">${slotTerm(slot)}</div>
     <p class="sub center">Who held this number?</p>
     <div class="opts" id="lOpts"></div>
+    <button class="hintbtn" id="lHintBtn" onclick="revealHint('lHintTxt',this)">Need a hint?</button>
+    <div class="hinttxt" id="lHintTxt" hidden>${slot.p.hook}</div>
     <div class="feedback" id="lFb"></div>
     <div id="lNext"></div>
   </div>`;
@@ -999,7 +1087,8 @@ function learnAnswer(btn,pp,slot,grid){
   [...grid.children].forEach(b=>{b.disabled=true;if(b.textContent===slot.p.name)b.classList.add("correct");});
   if(!ok)btn.classList.add("wrong");
   grade(slot.num,ok); if(ok)learn.right++; learn.done++;
-  document.getElementById("lFb").innerHTML=ok?`<span class="ok">Yes &mdash; ${slot.p.name}.</span>`:`<span class="no">It was ${slot.p.name}.</span>`;
+  const nL=`<a class="namelink" onclick="showInfo(${slot.num})">${slot.p.name}</a>`;
+  document.getElementById("lFb").innerHTML=ok?`<span class="ok">Yes &mdash;</span> ${nL}.`:`<span class="no">It was</span> ${nL}.`;
   const b=document.createElement("button");b.className="btn gold";
   b.textContent=learn.queue.length?"Next":"Finish set";b.onclick=learnQ;
   document.getElementById("lNext").appendChild(b);b.focus();refreshStats();
@@ -1104,8 +1193,8 @@ function drillView(id){
     <p class="sub" style="max-width:none">${th.blurb}</p>
     <div style="margin-top:14px">${th.nums.map(n=>{const p=byNum(n);return `<div class="learnrow">
       <div class="o">${n}</div><img src="${p.img}" alt="">
-      <div class="info"><div class="nm">${p.name}</div><div class="pg">${p.party} &middot; ${p.term}</div>
-      <div class="pg">${p.hook}</div></div></div>`;}).join("")}</div>
+      <div class="info"><div class="nm"><a class="namelink" onclick="showInfo(${n})">${p.name}</a></div><div class="pg">${p.party} &middot; ${p.term}</div>
+      <div class="pg">${p.hook}</div>${th.why&&th.why[n]?`<div class="whyline">${th.why[n]}</div>`:""}</div></div>`;}).join("")}</div>
     <div class="btn-row">
       <button class="btn gold" onclick="drillQuiz('${id}')">Quiz these ${th.nums.length}</button>
       <button class="btn ghost" onclick="drillFlash('${id}')">Flashcards</button>
